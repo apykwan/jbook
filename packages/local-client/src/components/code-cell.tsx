@@ -14,9 +14,9 @@ interface CodeCellProps {
   cell: Cell;
 }
 
-const CodeCell: React.FC<CodeCellProps> = ({ cell }) => { 
+const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
   const { updateCell, createBundle } = useActions();
-  const bundle = useTypedSelector(state => state.bundles[cell.id]);
+  const bundle = useTypedSelector((state) => state.bundles[cell.id]);
   const cumulativeCode = useCumulativeCode(cell.id);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
       return;
     }
 
-    const timer = setTimeout(() => {
+    const timer = setTimeout(async () => {
       createBundle(cell.id, cumulativeCode);
     }, 750);
 
@@ -37,11 +37,17 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
 
   return (
     <Resizable direction="vertical">
-      <div style={{ height: 'calc(100% - 10px)', display: 'flex', flexDirection: 'row' }}>
+      <div
+        style={{
+          height: 'calc(100% - 10px)',
+          display: 'flex',
+          flexDirection: 'row',
+        }}
+      >
         <Resizable direction="horizontal">
-          <CodeEditor 
+          <CodeEditor
             initialValue={cell.content}
-            onChange={value => updateCell(cell.id, value)}
+            onChange={(value) => updateCell(cell.id, value)}
           />
         </Resizable>
         <div className="progress-wrapper">
