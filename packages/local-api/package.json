@@ -1,11 +1,18 @@
 {
-  "name": "local-api",
+  "name": "@apkjsnote/local-api",
   "version": "1.0.0",
   "description": "",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "start": "tsc --watch --preserveWatchOutput"
+    "start": "tsc --watch --preserveWatchOutput",
+    "prepublishOnly": "tsc"
   },
   "keywords": [],
   "author": "",
@@ -16,8 +23,9 @@
     "typescript": "^4.8.4"
   },
   "dependencies": {
+    "@apkjsnote/local-client": "^0.1.0",
+    "cors": "^2.8.5",
     "express": "^4.18.1",
-    "http-proxy-middleware": "^2.0.6",
-    "local-client": "^0.1.0"
+    "http-proxy-middleware": "^2.0.6"
   }
 }
